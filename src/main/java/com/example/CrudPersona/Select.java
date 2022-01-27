@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @RestController
 public class Select {
 
@@ -19,16 +21,9 @@ public class Select {
     }
 
     @GetMapping("/persona/nombre/{nombre}")
-    public Persona consultarNombre(@PathVariable String nombre){
+    public ArrayList consultarNombre(@PathVariable String nombre){
         Persona p = null;
-        p=s.select(nombre);
-        if(p==null){
-            p.setNombre("");
-            p.setEdad(-1);
-            p.setPoblacion("");
-        }else{
-            return p;
-        }
-        return p;
+        ArrayList resulado = s.select(nombre);
+        return resulado;
     }
 }
